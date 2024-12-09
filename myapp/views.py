@@ -5,6 +5,7 @@ from .models import Item
 from .serializers import ItemSerializer
 
 @api_view(['GET', 'POST'])
+
 def item_list(request):
     if request.method == 'GET':
         items = Item.objects.all()
