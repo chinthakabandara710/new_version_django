@@ -29,7 +29,9 @@ SECRET_KEY = 'django-insecure-hym%jwz$ewd218p&n$)ptpfy*r4@xmpk#zqwt^v^9(1i(^!!-b
 DEBUG = False
 
 # Allowed hosts must include your Vercel domain
-ALLOWED_HOSTS = ['new-version-django-fmwp2km6v-chinthakas-projects-e308d82b.vercel.app']
+# ALLOWED_HOSTS = ['new-version-django-fmwp2km6v-chinthakas-projects-e308d82b.vercel.app']
+# ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['*']
 
 # CSRF trusted origins must include your Vercel domain
 CSRF_TRUSTED_ORIGINS = [
@@ -39,6 +41,7 @@ CSRF_TRUSTED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'witenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,13 +54,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # For serving static files
 ]
 
 ROOT_URLCONF = 'myproject.urls'
