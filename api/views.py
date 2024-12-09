@@ -17,37 +17,18 @@ from firebase_admin import credentials, storage
 from firebase_admin import db
 from decouple import config
 
+firebase_config_path = config('FIREBASE_NewConfigurations')
 
-newConfigurations ={
-  "apiKey": "AIzaSyBLNGQ-OCdoo3IH1GhKg0AwifXfQq8b1-U",
-  "authDomain": "restaurantapp-bbb0e.firebaseapp.com",
-  "databaseURL": "https://restaurantapp-bbb0e-default-rtdb.asia-southeast1.firebasedatabase.app",
-  "projectId": "restaurantapp-bbb0e",
-  "storageBucket": "restaurantapp-bbb0e.appspot.com",
-  "messagingSenderId": "820363650353",
-  "appId": "1:820363650353:web:81668cebe476f5b5d37c10"
-}
+# Load the Firebase configuration from the JSON file
+with open(firebase_config_path, 'r') as file:
+    newConfigurations = json.load(file)
 
-# config = {
-#   "apiKey": "AIzaSyBYvKBKqBzqpPcUO1JWADkpuH0X-Yw2EWg",
-#   "authDomain": "emergingmedia-36f22.firebaseapp.com",
-#   "databaseURL": "https://emergingmedia-36f22-default-rtdb.asia-southeast1.firebasedatabase.app",
-#   "projectId": "emergingmedia-36f22",
-#   "storageBucket": "emergingmedia-36f22.firebasestorage.app",
-#   "messagingSenderId": "1060225011477",
-#   "appId": "1:1060225011477:web:b6cf77a20630f67a52e31c"
-# }
-
+# Initialize Firebase with the loaded configuration
 firebase = pyrebase.initialize_app(newConfigurations)
 database = firebase.database()
 auth = firebase.auth()
-user_token = ""
 
-# 
-# C:\Users\HP\Desktop\deployDjango\myproject\static\favicon.ico
-# cred_path = os.getenv('C:\Users\HP\Desktop\serviceAcc')
-# cred = credentials.Certificate(cred_path)
-# firebase_admin.initialize_app(cred)
+user_token = ""
 
 file_path = config('FIREBASE_CRED_PATH')
 cred = credentials.Certificate(file_path)
