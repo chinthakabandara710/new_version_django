@@ -33,8 +33,8 @@ user_token = ""
 file_path = config('FIREBASE_CRED_PATH')
 cred = credentials.Certificate(file_path)
 firebase_admin.initialize_app(cred, {
-    "databaseURL": "https://restaurantapp-bbb0e-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "storageBucket": "restaurantapp-bbb0e.appspot.com"
+    "databaseURL": newConfigurations.get("databaseURL"),
+    "storageBucket": newConfigurations.get("storageBucket")
 })
 
 def display_firebase_data(request):
