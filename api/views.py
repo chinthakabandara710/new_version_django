@@ -15,8 +15,10 @@ from io import BytesIO
 import firebase_admin
 from firebase_admin import credentials, storage
 from firebase_admin import db
+from decouple import config
 
-config ={
+
+newConfigurations ={
   "apiKey": "AIzaSyBLNGQ-OCdoo3IH1GhKg0AwifXfQq8b1-U",
   "authDomain": "restaurantapp-bbb0e.firebaseapp.com",
   "databaseURL": "https://restaurantapp-bbb0e-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -36,19 +38,23 @@ config ={
 #   "appId": "1:1060225011477:web:b6cf77a20630f67a52e31c"
 # }
 
-firebase = pyrebase.initialize_app(config)
+firebase = pyrebase.initialize_app(newConfigurations)
 database = firebase.database()
 auth = firebase.auth()
 user_token = ""
 
-current_directory = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(current_directory, "firebase_service_account.json")
+# 
+# C:\Users\HP\Desktop\deployDjango\myproject\static\favicon.ico
+# cred_path = os.getenv('C:\Users\HP\Desktop\serviceAcc')
+# cred = credentials.Certificate(cred_path)
+# firebase_admin.initialize_app(cred)
+
+file_path = config('FIREBASE_CRED_PATH')
 cred = credentials.Certificate(file_path)
 firebase_admin.initialize_app(cred, {
     "databaseURL": "https://restaurantapp-bbb0e-default-rtdb.asia-southeast1.firebasedatabase.app",
     "storageBucket": "restaurantapp-bbb0e.appspot.com"
 })
-
 
 def display_firebase_data(request):
     firebase_data = database.child("users").get()
