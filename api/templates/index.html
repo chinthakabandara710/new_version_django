@@ -2,9 +2,11 @@
 <html lang="en">
 
 <head>
+    {% load static %}  <!-- Load static files for Django template -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://web.dev/static/articles/building/an-adaptive-favicon/image/example-dark-theme-favico-6a6f6f67bc3e7.png" />
+    <!-- Link to favicon.ico using the static template tag -->
+    <link rel="icon" href="{% static 'favicon.ico' %}" />
     <title>Django Firebase</title>
     <style>
         body {
@@ -21,10 +23,7 @@
 
 <body>
     <div class="container">
-
-
         <h1>Inventory Management System Backend APIs</h1>
-
     </div>
 </body>
 
